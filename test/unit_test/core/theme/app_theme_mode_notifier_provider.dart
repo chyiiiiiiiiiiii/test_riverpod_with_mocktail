@@ -84,7 +84,8 @@ void main() {
 
         // Till the operation is done, the data retrieving will throw Exception.
         // 1. throwsA -> isA
-        await expectLater(() async => providerContainer.read(appThemeModeNotifierProvider.notifier).future, throwsA(isA<Exception>()));
+        await expectLater(() async => providerContainer.read(appThemeModeNotifierProvider.notifier).future,
+            throwsA(isA<Exception>()));
         // 2. throwsA -> isInstanceOf
         await expectLater(
           () async => providerContainer.read(appThemeModeNotifierProvider.notifier).future,
@@ -133,12 +134,10 @@ void main() {
       'call toggleMode() and check stream data is correct',
       () async {
         /// arrange
-
         when(() => storage.get(LocalStorageKeys.isLightTheme)).thenAnswer((_) async => Future.value('true'));
         when(() => storage.set(LocalStorageKeys.isLightTheme, any<bool>())).thenAnswer((invocation) => Future.value());
 
         /// run
-
         await providerContainer.read(appThemeModeNotifierProvider.notifier).toggleMode();
 
         // call once in build()
@@ -180,7 +179,8 @@ void main() {
         // When listen the provider, it will initialize and run build()
         verify(() => storage.get(LocalStorageKeys.isLightTheme)).called(1);
 
-        await expectLater(() async => providerContainer.read(appThemeModeNotifierProvider.notifier).toggleMode(), throwsA(isA<Exception>()));
+        await expectLater(() async => providerContainer.read(appThemeModeNotifierProvider.notifier).toggleMode(),
+            throwsA(isA<Exception>()));
 
         verifyInOrder([
           // Beginning set the loading state

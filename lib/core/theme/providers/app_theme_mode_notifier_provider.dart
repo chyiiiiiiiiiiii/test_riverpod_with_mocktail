@@ -17,7 +17,8 @@ class AppThemeModeNotifier extends AutoDisposeAsyncNotifier<ThemeMode> {
 
   @override
   Future<ThemeMode> build() async {
-    final bool isLightTheme = (await ref.read(localStorageProvider).get(LocalStorageKeys.isLightTheme)) == 'true' || false;
+    final bool isLightTheme =
+        (await ref.read(localStorageProvider).get(LocalStorageKeys.isLightTheme)) == 'true' || false;
 
     ref.onDispose(streamController.close);
 
@@ -33,7 +34,8 @@ class AppThemeModeNotifier extends AutoDisposeAsyncNotifier<ThemeMode> {
   Future<void> toggleMode() async {
     state = const AsyncLoading();
 
-    final bool isLightTheme = (await ref.read(localStorageProvider).get(LocalStorageKeys.isLightTheme)) == 'true' || false;
+    final bool isLightTheme =
+        (await ref.read(localStorageProvider).get(LocalStorageKeys.isLightTheme)) == 'true' || false;
 
     ThemeMode currentThemeMode = isLightTheme ? ThemeMode.light : ThemeMode.dark;
     if (currentThemeMode == ThemeMode.light) {
